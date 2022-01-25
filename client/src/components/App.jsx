@@ -25,25 +25,25 @@ class App extends React.Component {
 
   checkAnswer(e) {
     let {highScore, currentQuestion, currentQuestionIndex } = this.state;
-    let newIndex = currentQuestionIndex+=1;
+
     e.preventDefault();
     if(e.target.name === currentQuestion.correct_answer) {
       let newScore = highScore+=1;
       this.setState({highScore: newScore})
-      this.loadNextQuestion(newIndex)
       //style button GREEN
     } else {
-      this.loadNextQuestion(newIndex)
       //style button RED
     }
+    let newIndex = currentQuestionIndex+=1;
+    this.setState({currentQuestionIndex: newIndex})
+    this.loadNextQuestion(newIndex)
   }
 
-  loadNextQuestion(index) {
-    let {currentQuestions, currentQuestionIndex, currentQuestion } = this.state;
-    let allAnswers = currentQuestions[index].incorrect_answers;
-      allAnswers.push(currentQuestions[index].correct_answer)
-    let newQuestion = currentQuestions[index]
-    this.setState({currentQuestionIndex: index})
+  loadNextQuestion(i) {
+    let {currentQuestions, currentQuestion} = this.state;
+    let allAnswers = currentQuestions[i].incorrect_answers;
+      allAnswers.push(currentQuestions[i].correct_answer)
+    let newQuestion = currentQuestions[i]
     this.setState({currentQuestion: newQuestion})
     this.setState({answers: allAnswers})
   }
@@ -77,7 +77,7 @@ class App extends React.Component {
           />
         </div>
       )
-    } else if(currentQuestionIndex <= 10) {
+    } else if(currentQuestionIndex <= 9) {
       return (
         <div>
           <NextQuestion
@@ -87,6 +87,8 @@ class App extends React.Component {
           currentQuestionIndex ={currentQuestionIndex}
           checkAnswer = {this.checkAnswer}
           loadNextQuestion = {this.loadNextQuestion}
+          onLoadNextClick = {this.onLoadNextClick}
+
           />
         </div>
       )
@@ -94,8 +96,7 @@ class App extends React.Component {
       return (
         <div>
           <GameOver
-          highScore = {highScore}
-          />
+          highScore = {highScore}/>
         </div>
       )
     }

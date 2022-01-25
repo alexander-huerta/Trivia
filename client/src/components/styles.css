@@ -16,7 +16,8 @@
 
 .currentQuestion {
   padding: 10px 60px;
-  font:200
+  font:200;
+  top: 5%;
 }
 
 .score {
@@ -26,6 +27,7 @@
   padding: 10px 60px;
   position: absolute;
   right: 10%;
+  top: 10%;
 }
 
 .gameOver {

@@ -3,8 +3,11 @@ import React from 'react';
 const NextQuestion = ({currentQuestion, answers, highScore, currentQuestionIndex, checkAnswer, loadNextQuestion }) => {
   return (
     <div>
+      <div className="round">
+        Round: {currentQuestionIndex+1}
+      </div>
+
       <div className="score">
-        Round: {currentQuestionIndex}
         Current Score: {highScore}
       </div>
 
@@ -55,8 +58,7 @@ const NextQuestion = ({currentQuestion, answers, highScore, currentQuestionIndex
       <button
           className = "button nextQuestion"
           type= "submit"
-          name = "nextQuestion"
-          onClick = {loadNextQuestion}>
+          name = "nextQuestion">
         nextQuestion
       </button>
    </form>

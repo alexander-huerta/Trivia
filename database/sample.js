@@ -17,7 +17,7 @@ module.exports.questions = {
           "category": "Entertainment: Video Games",
           "type": "multiple",
           "difficulty": "easy",
-          "question": "What is Pikachu's National Pok&eacute;Dex Number?",
+          "question": "What is Pikachu's National Pok-Dex Number?",
           "correct_answer": "#025",
           "incorrect_answers": [
               "#001",
@@ -29,7 +29,7 @@ module.exports.questions = {
           "category": "Entertainment: Video Games",
           "type": "multiple",
           "difficulty": "easy",
-          "question": "In what year was the game &quot;Fallout&quot; released?",
+          "question": "In what year was the game Fallout released?",
           "correct_answer": "1997",
           "incorrect_answers": [
               "1998",
@@ -41,7 +41,7 @@ module.exports.questions = {
           "category": "Entertainment: Video Games",
           "type": "multiple",
           "difficulty": "easy",
-          "question": "Which of these is NOT the name of a rival gang in the video game Saint&#039;s Row 2?",
+          "question": "Which of these is NOT the name of a rival gang in the video game Saint's Row 2?",
           "correct_answer": "The Zin Empire",
           "incorrect_answers": [
               "The Brotherhood",

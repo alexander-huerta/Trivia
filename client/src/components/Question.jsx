@@ -3,13 +3,16 @@ import React from 'react';
 const Question = ({currentQuestion, answers, highScore, currentQuestionIndex, checkAnswer }) => {
   return (
     <div>
-      <div className="score">
+      <div className="round">
         Round: {currentQuestionIndex+1}
-        --Current Score: {highScore}--
       </div>
 
-      <h2 className="currentQuestion">
-        {currentQuestion.question}</h2>
+      <div className="score">
+        Current Score: {highScore}
+      </div>
+
+     <h2 className="currentQuestion">
+      {currentQuestion.question}</h2>
 
       <form>
         <button
