@@ -20,60 +20,48 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    let {currentQuestions, currentQuestionIndex } = this.state;
-    let allAnswers = [];
-
-    currentQuestions[currentQuestionIndex].incorrect_answers.forEach((answer) => {return allAnswers.push(answer)})
-
-    allAnswers.push(currentQuestions[currentQuestionIndex].correct_answer)
-
-
-    this.setState({answers: allAnswers})
-    this.setState({currentQuestion: currentQuestions[currentQuestionIndex]})
-
+    this.loadNextQuestion(0)
   }
 
-
-
-
   checkAnswer(e) {
-    let {highScore, currentQuestion } = this.state;
+    let {highScore, currentQuestion, currentQuestionIndex } = this.state;
+    let newIndex = currentQuestionIndex+=1;
     e.preventDefault();
     if(e.target.name === currentQuestion.correct_answer) {
       let newScore = highScore+=1;
       this.setState({highScore: newScore})
-      this.loadNextQuestion()
+      this.loadNextQuestion(newIndex)
       //style button GREEN
-
     } else {
-      this.loadNextQuestion()
+      this.loadNextQuestion(newIndex)
       //style button RED
     }
   }
 
-  loadNextQuestion() {
+  loadNextQuestion(index) {
     let {currentQuestions, currentQuestionIndex, currentQuestion } = this.state;
-    let newIndex = currentQuestionIndex+=1;
-    let newQuestion = currentQuestions[newIndex]
-    this.setState({currentQuestionIndex: newIndex})
+    let allAnswers = currentQuestions[index].incorrect_answers;
+      allAnswers.push(currentQuestions[index].correct_answer)
+    let newQuestion = currentQuestions[index]
+    this.setState({currentQuestionIndex: index})
     this.setState({currentQuestion: newQuestion})
+    this.setState({answers: allAnswers})
   }
 
-  shuffleAnswers(array) {
-    let currentIndex = array.length,  randomIndex;
+  shuffleAnswers(answers) {
+    let currentIndex = answers.length,  randomIndex;
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+      [answers[currentIndex], answers[randomIndex]] = [
+        answers[randomIndex], answers[currentIndex]];
     }
-    return array;
+    return answers;
   }
 
 
-
   render() {
-    let {currentQuestions, answers, currentQuestionIndex, highScore, loadNextQuestion, currentQuestion } = this.state;
+    let {currentQuestion, answers, currentQuestionIndex, highScore, loadNextQuestion } = this.state;
 
     let shuffledAnswers = this.shuffleAnswers(answers)
 
