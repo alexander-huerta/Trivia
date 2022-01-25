@@ -1,4 +1,4 @@
-module.exports.jokes = {
+module.exports.questions = {
   "response_code": 0,
   "results": [
       {

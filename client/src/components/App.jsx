@@ -1,87 +1,120 @@
 import React from 'react';
-import jokes from '../../../database/sample.js'
-
+import questions from '../../../database/sample.js'
+import Question from './Question.jsx'
+import NextQuestion from './NextQuestion.jsx'
+import GameOver from './GameOver.jsx'
+import './styles.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentJokes: jokes.jokes.results,
-      currentJokeIndex: 0,
-      currentQuestion: jokes.jokes.results[0].question,
+      currentQuestions: questions.questions.results,
+      currentQuestion: {},
       answers: [],
-      correctAnswer: ''
+      currentQuestionIndex: 0,
+      highScore: 0
      };
      this.checkAnswer = this.checkAnswer.bind(this)
+     this.loadNextQuestion = this.loadNextQuestion.bind(this)
   }
 
   componentDidMount() {
+    let {currentQuestions, currentQuestionIndex } = this.state;
     let allAnswers = [];
 
-    this.state.currentJokes[0].incorrect_answers.forEach((answer) => {return allAnswers.push(answer)})
+    currentQuestions[currentQuestionIndex].incorrect_answers.forEach((answer) => {return allAnswers.push(answer)})
 
-    allAnswers.push(this.state.currentJokes[0].correct_answer)
+    allAnswers.push(currentQuestions[currentQuestionIndex].correct_answer)
 
-    this.setState({correctAnswer: this.state.currentJokes[0].correct_answer})
+
     this.setState({answers: allAnswers})
+    this.setState({currentQuestion: currentQuestions[currentQuestionIndex]})
+
   }
 
 
-  checkAnswer(e) {
-    e.preventDefault();
-    if(e.target.name === this.state.correctAnswer) {
-      alert('Nice Job!')
-    } else {
-      alert('ahh better luck next time')
-    }
 
+
+  checkAnswer(e) {
+    let {highScore, currentQuestion } = this.state;
+    e.preventDefault();
+    if(e.target.name === currentQuestion.correct_answer) {
+      let newScore = highScore+=1;
+      this.setState({highScore: newScore})
+      this.loadNextQuestion()
+      //style button GREEN
+
+    } else {
+      this.loadNextQuestion()
+      //style button RED
+    }
+  }
+
+  loadNextQuestion() {
+    let {currentQuestions, currentQuestionIndex, currentQuestion } = this.state;
+    let newIndex = currentQuestionIndex+=1;
+    let newQuestion = currentQuestions[newIndex]
+    this.setState({currentQuestionIndex: newIndex})
+    this.setState({currentQuestion: newQuestion})
+  }
+
+  shuffleAnswers(array) {
+    let currentIndex = array.length,  randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+    return array;
   }
 
 
 
   render() {
-    return (
-      <div>
+    let {currentQuestions, answers, currentQuestionIndex, highScore, loadNextQuestion, currentQuestion } = this.state;
 
-      <h2>{this.state.currentQuestion}</h2>
-      <form>
-        <button
-            type= "submit"
-            name = {this.state.answers[0]}
-            onClick = {this.checkAnswer}>
-          {this.state.answers[0]}
-        </button>
-      </form>
+    let shuffledAnswers = this.shuffleAnswers(answers)
 
-      <form>
-        <button
-            type= "submit"
-            name = {this.state.answers[1]}
-            onClick = {this.checkAnswer}>
-          {this.state.answers[1]}
-        </button>
-      </form>
+    if(currentQuestionIndex === 0) {
+      return (
+        <div>
+          <Question
+          currentQuestion ={currentQuestion}
+          answers = {shuffledAnswers}
+          highScore = {highScore}
+          currentQuestionIndex ={currentQuestionIndex}
+          checkAnswer = {this.checkAnswer}
+          />
+        </div>
+      )
+    } else if(currentQuestionIndex <= 10) {
+      return (
+        <div>
+          <NextQuestion
+          currentQuestion ={currentQuestion}
+          answers = {shuffledAnswers}
+          highScore = {highScore}
+          currentQuestionIndex ={currentQuestionIndex}
+          checkAnswer = {this.checkAnswer}
+          loadNextQuestion = {this.loadNextQuestion}
+          />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <GameOver
+          highScore = {highScore}
+          />
+        </div>
+      )
+    }
 
-      <form>
-      <button
-            type= "submit"
-            name = {this.state.answers[2]}
-            onClick = {this.checkAnswer}>
-          {this.state.answers[2]}
-        </button>
-      </form>
 
-      <form>
-      <button
-            type= "submit"
-            name = {this.state.answers[3]}
-            onClick = {this.checkAnswer}>
-          {this.state.answers[3]}
-        </button>
-     </form>
 
-      </div>
-    );
+
   }
 }
 
