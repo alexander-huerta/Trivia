@@ -1,4 +1,4 @@
-{
+module.exports.jokes = {
   "response_code": 0,
   "results": [
       {
@@ -17,7 +17,7 @@
           "category": "Entertainment: Video Games",
           "type": "multiple",
           "difficulty": "easy",
-          "question": "What is Pikachu&#039;s National Pok&eacute;Dex Number?",
+          "question": "What is Pikachu's National Pok&eacute;Dex Number?",
           "correct_answer": "#025",
           "incorrect_answers": [
               "#001",
