@@ -13,11 +13,9 @@ app.listen(port, () => {
 })
 
 
-
 // API endpoint
 // 'https://opentdb.com/api.php'
 // No Key necessary
-
 
 // SAMPLE REQ
 // 'https://opentdb.com/api.php?amount=10&category=15&difficulty=medium&type=multiple'

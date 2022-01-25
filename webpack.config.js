@@ -1,6 +1,5 @@
 const path = require('path');
 
-
 module.exports = {
   mode: 'development',
   entry: './client/src/index.jsx',
@@ -24,9 +23,5 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'client/dist'),
   },
-
-
   mode: 'development'
-
-
 };
