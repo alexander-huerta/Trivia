@@ -14,7 +14,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div> Testing 3 2 1</div>
+      <div> {this.state.name}</div>
     );
 
   }
