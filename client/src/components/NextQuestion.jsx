@@ -1,18 +1,29 @@
 import React from 'react';
 
-const NextQuestion = ({currentQuestion, answers, highScore, currentQuestionIndex, checkAnswer, loadNextQuestion }) => {
+const NextQuestion = ({currentQuestion, answers, currentScore, highScore, currentQuestionIndex, checkAnswer, loadNextQuestion, username }) => {
   return (
-    <div>
-      <div className="round">
+    <div className = "container">
+
+    <div className = "userInfoContainer">
+      <div>
+        Username : {username}
+      </div>
+      <div >
         Round: {currentQuestionIndex+1}
       </div>
-
-      <div className="score">
-        Current Score: {highScore}
+      <div>
+      Current Score: {currentScore}
       </div>
+      <div>
+      High Score: {highScore}
+      </div>
+    </div>
 
-    <h2 className="currentQuestion">
-      {currentQuestion.question}</h2>
+   <h2 className="question">
+    {currentQuestion.question}</h2>
+
+
+
 
     <form>
       <button
@@ -56,10 +67,10 @@ const NextQuestion = ({currentQuestion, answers, highScore, currentQuestionIndex
 
    <form>
       <button
-          className = "button nextQuestion"
+          className = "button altButton"
           type= "submit"
           name = "nextQuestion">
-        nextQuestion
+        Next Question
       </button>
    </form>
 

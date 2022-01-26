@@ -1,40 +1,52 @@
+
+/* BUTTONS */
 .button {
   background-color: rgb(103, 94, 223);
   color: white;
   font-size: 20px;
-  padding: 10px 60px;
-  border-radius: 5px;
-  margin: 10px 0px;
+  padding: 20px 30px;
+  border-radius: 20px;
+  margin: 10px 10px;
+}
+.altButton {
+  background-color: rgb(45, 70, 184);
 }
 
-.nextQuestion {
-  background-color: rgb(231, 134, 44);
+
+/* CONTAINERS */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: rgb(128, 215, 241);
 }
-.playAgain {
-  background-color: rgb(48, 236, 73);
+.userInfoContainer {
+  background-color: rgb(45, 70, 184);
+  color: rgb(241, 69, 69);
+  font-size: 25px;
+  padding: 20px 20px;
+  margin:auto;
+  border-radius: 20px;
 }
 
-.currentQuestion {
-  padding: 10px 60px;
+
+
+.signup {
+  background-color: rgb(241, 128, 198);
+  color: white;
+  font-size: 25px;
+  padding: 20px 20px;
+  border-radius: 20px;
+}
+
+
+/* View 2, 3 -  */
+
+
+
+
+.question {
   font:200;
-  top: 5%;
-}
-
-.score {
-  font-size: 20px;
-  color:rgb(103, 94, 223);
-  margin: 0;
-  padding: 10px 60px;
-  position: absolute;
-  right: 10%;
-  top: 10%;
-}
-
-.gameOver {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
 }
