@@ -53,7 +53,7 @@ module.exports.questions = {
           "category": "Entertainment: Video Games",
           "type": "multiple",
           "difficulty": "easy",
-          "question": "What year was the game &quot;Overwatch&quot; revealed?",
+          "question": "What year was the game Overwatch revealed?",
           "correct_answer": "2014",
           "incorrect_answers": [
               "2015",
@@ -89,7 +89,7 @@ module.exports.questions = {
           "category": "Entertainment: Video Games",
           "type": "multiple",
           "difficulty": "easy",
-          "question": "Who created the &quot;Metal Gear&quot; Series?",
+          "question": "Who created the Metal Gear Series?",
           "correct_answer": "Hideo Kojima",
           "incorrect_answers": [
               "Hiroshi Yamauchi",
@@ -113,7 +113,7 @@ module.exports.questions = {
           "category": "Entertainment: Video Games",
           "type": "multiple",
           "difficulty": "easy",
-          "question": "In the game &quot;Fire Emblem: Shadow Dragon&quot;, what is the central protagonist&#039;s name?",
+          "question": "In the game Fire Emblem: Shadow Dragon, what is the central protagonist&#039;s name?",
           "correct_answer": "Marth",
           "incorrect_answers": [
               "Roy",

@@ -1,19 +1,23 @@
 import React from 'react';
 
-const GameOver = ({highScore}) => {
+const GameOver = ({highScore, username, currentScore}) => {
   return (
-    <div className = "gameOver">
-      <h2>Nice Game!</h2>
-      <h2>Score {highScore}</h2>
+    <div className = "container">
+      <div className = "userInfoContainer">
+      <div>Nice Game! {username}</div>
+      <div>Score {currentScore}</div>
+      <div>Your high score {highScore}</div>
+    </div>
+
       <form>
-          <button
-              className = "button playAgain"
-              type= "submit"
-              name = "playAgain"
-              onClick = {console.log('game over')}>
-            PLAY AGAIN
-          </button>
+        <button
+          className = "button altButton"
+          type= "submit"
+          name = "playAgain">
+          PLAY AGAIN
+        </button>
       </form>
+
     </div>
   );
 }

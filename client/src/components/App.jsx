@@ -3,6 +3,11 @@ import questions from '../../../database/sample.js'
 import Question from './Question.jsx'
 import NextQuestion from './NextQuestion.jsx'
 import GameOver from './GameOver.jsx'
+import LogIn from './LogIn.jsx'
+import SignUp from './SignUp.jsx'
+
+
+
 import './styles.css';
 
 class App extends React.Component {
@@ -13,23 +18,31 @@ class App extends React.Component {
       currentQuestion: {},
       answers: [],
       currentQuestionIndex: 0,
-      highScore: 0
+      currentScore: 0,
+      highScore: 0,
+      username: 'anon',
+      loggedIn: false
      };
      this.checkAnswer = this.checkAnswer.bind(this)
      this.loadNextQuestion = this.loadNextQuestion.bind(this)
+     this.logIn = this.logIn.bind(this)
+
+
+
   }
 
   componentDidMount() {
+    //load user & high scores
     this.loadNextQuestion(0)
   }
 
   checkAnswer(e) {
-    let {highScore, currentQuestion, currentQuestionIndex } = this.state;
+    let {currentScore, currentQuestion, currentQuestionIndex } = this.state;
 
     e.preventDefault();
     if(e.target.name === currentQuestion.correct_answer) {
-      let newScore = highScore+=1;
-      this.setState({highScore: newScore})
+      let newScore = currentScore+=1;
+      this.setState({currentScore: newScore})
       //style button GREEN
     } else {
       //style button RED
@@ -59,19 +72,28 @@ class App extends React.Component {
     return answers;
   }
 
+  logIn() {
+    this.setState({loggedIn: true})
+  }
+
 
   render() {
-    let {currentQuestion, answers, currentQuestionIndex, highScore, loadNextQuestion } = this.state;
-
+    let {currentQuestion, answers, currentQuestionIndex, currentScore, highScore, loadNextQuestion, loggedIn, logIn, username } = this.state;
     let shuffledAnswers = this.shuffleAnswers(answers)
 
-    if(currentQuestionIndex === 0) {
+    if(loggedIn) {
+      return (
+        <div> <SignUp logIn = {this.logIn}/></div>
+      )
+    } else if(currentQuestionIndex === 0) {
       return (
         <div>
           <Question
           currentQuestion ={currentQuestion}
           answers = {shuffledAnswers}
+          currentScore = {currentScore}
           highScore = {highScore}
+          username = {username}
           currentQuestionIndex ={currentQuestionIndex}
           checkAnswer = {this.checkAnswer}
           />
@@ -83,7 +105,9 @@ class App extends React.Component {
           <NextQuestion
           currentQuestion ={currentQuestion}
           answers = {shuffledAnswers}
+          currentScore = {currentScore}
           highScore = {highScore}
+          username = {username}
           currentQuestionIndex ={currentQuestionIndex}
           checkAnswer = {this.checkAnswer}
           loadNextQuestion = {this.loadNextQuestion}
@@ -96,7 +120,9 @@ class App extends React.Component {
       return (
         <div>
           <GameOver
-          highScore = {highScore}/>
+          currentScore = {currentScore}
+          highScore = {highScore}
+          username = {username}/>
         </div>
       )
     }
